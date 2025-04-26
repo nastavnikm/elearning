@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDE settings (PyCharm, VSCode, itd.)
+.idea/
+.vscode/
+
+# Operativni sistem fajlovi
+.DS_Store
+Thumbs.db
+
+# Log fajlovi
+*.log
+
+# SQLite baze (ako koristiš lokalnu bazu u razvoju)
+*.sqlite3
+
+# Migracije (ako želiš čist repozitorijum)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.pyo
+
+# Cache fajlovi
+*.cache
+
+# Test pokrivenost
+htmlcov/
+.coverage
+.tox/
+.nox/
+
+# Python paketovanje
+build/
+dist/
+*.egg-info/
+
+# Node.js ako koristiš frontend
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
