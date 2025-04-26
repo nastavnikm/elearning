@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
-
 # Funkcija za skidanje vesti sa B92
 async def get_b92_news(session):
     url = "https://www.b92.net/najnovije-vesti"
@@ -150,6 +149,27 @@ def get_news():
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
+# Istraživanje ruta
+@app.route("/istrazivanje")
+def istrazivanje():
+    return render_template("istrazivanje.html")
+
+# Ruta za aplikacije
+@app.route("/aplikacije")
+def aplikacije():
+    return render_template("aplikacije.html")
+
+# Ruta za e-learning
+@app.route("/elearning")
+def elearning():
+    return render_template("elearning.html")
+
+# Ruta za about stranu
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 
 if __name__ == "__main__":
