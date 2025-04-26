@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kajron Vesti</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        #top-navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        #top-navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #444;
+        }
+        #top-navbar a:hover {
+            background-color: #555;
+        }
+        .controls {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 100px;
+            width: 100%;
+        }
+        .controls label {
+            margin: 0 10px;
+        }
+        #kajron-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            height: 100px;
+            display: flex;
+            align-items: center;
+        }
+        #kajron-text {
+            display: inline-block;
+            padding-left: 100%;
+            font-size: 24px;
+        }
+        @keyframes scroll-left {
+            from {
+                transform: translateX(0%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigacija na vrhu -->
+<div id="top-navbar">
+    <a href="/istrazivanje">Istraživanje</a>
+    <a href="/aplikacije">Aplikacije</a>
+    <a href="/elearning">ELearning</a>
+    <a href="/about">About</a>
+</div>
+
+<!-- Kontrole: checkboxovi i dugme -->
+<div class="controls">
+    <label><input type="checkbox" id="b92" checked> B92</label>
+    <label><input type="checkbox" id="n1" checked> N1</label>
+    <label><input type="checkbox" id="danas" checked> Danas</label>
+    <button onclick="loadKajron()">Osveži Kajron</button>
+</div>
+
+<!-- Kajron -->
+<div id="kajron-container">
+    <div id="kajron-text">Dobrodošli!</div>
+</div>
+
+<script>
+    function loadKajron() {
+        const b92Checked = document.getElementById("b92").checked;
+        const n1Checked = document.getElementById("n1").checked;
+        const danasChecked = document.getElementById("danas").checked;
+        const sites = [];
+
+        if (b92Checked) sites.push("B92");
+        if (n1Checked) sites.push("N1");
+        if (danasChecked) sites.push("Danas");
+
+        fetch("/get_news", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ sites: sites })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const kajronText = document.getElementById("kajron-text");
+            if (data.length > 0) {
+                kajronText.innerText = data.join(" | ");
+            } else {
+                kajronText.innerText = "Nema dostupnih vesti.";
+            }
+            restartAnimation(b92Checked, n1Checked, danasChecked);
+        });
+    }
+
+    function restartAnimation(b92Checked, n1Checked, danasChecked) {
+        const kajronText = document.getElementById("kajron-text");
+        kajronText.style.animation = "none";
+        void kajronText.offsetWidth; // Reflow
+
+        // Brzine animacije zavisno od izbora
+        const brojIzabranih = [b92Checked, n1Checked, danasChecked].filter(Boolean).length;
+
+        if (brojIzabranih === 1) {
+            kajronText.style.animation = "scroll-left 500s linear infinite"; // vrlo sporo
+        } else if (brojIzabranih === 2) {
+            kajronText.style.animation = "scroll-left 300s linear infinite"; // srednje sporo
+        } else {
+            kajronText.style.animation = "scroll-left 200s linear infinite"; // malo brže
+        }
+    }
+
+    window.onload = loadKajron;
+</script>
+
+</body>
+</html>
