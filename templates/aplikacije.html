@@ -2,11 +2,45 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-    <title>Aplikacije</title>
+    <title>Preuzmite aplikacije</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .app-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .install-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .install-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>Dobrodošli u sekciju za aplikacije!</h1>
-    <p>Ovdje ćete pronaći informacije o svim aplikacijama.</p>
-    <a href="/">Vrati se na početnu stranu</a>
+
+<h1>Preuzmite naše aplikacije</h1>
+
+<div class="app-card">
+    <h2>Uho Aplikacija</h2>
+    <p>Glasovno upravljanje i korisne komande!</p>
+    <a href="/static/apk/uho.apk" class="install-button" download>Instaliraj</a>
+</div>
+
+<!-- Ovde možeš dodati još aplikacija ovim stilom -->
+
 </body>
 </html>
