@@ -147,6 +147,39 @@
         <div class="counter" id="counter-uho">Preuzimanja: 0</div>
     </div>
 
+    <div class="app-card">
+    <img src="/static/images/callyou_icon.png" alt="CallYou aplikacija">
+    <div class="app-card-content">
+        <h2>CallYou</h2>
+        <p>Brzo biranje i pozivanje preko jednostavnog interfejsa!</p>
+    </div>
+    <a href="/static/apk/callyou.apk" class="install-button" onclick="incrementCounter('callyou')">Instaliraj</a>
+    <div class="counter" id="counter-callyou">Preuzimanja: 0</div>
+</div>
+
+    <div class="app-card">
+    <img src="/static/images/call_youtube_song_icon.png" alt="Call YouTube Song aplikacija">
+    <div class="app-card-content">
+        <h2>Call YouTube Song</h2>
+        <p>Pusti pesmu na YouTube-u koristeći glasovne komande. Fokusirano na engleski jezik.</p>
+    </div>
+    <a href="/static/apk/call_youtube_song.apk" class="install-button" onclick="incrementCounter('call_youtube_song')">Instaliraj</a>
+    <div class="counter" id="counter-call_youtube_song">Preuzimanja: 0</div>
+</div>
+
+    <div class="app-card">
+    <img src="/static/images/glas_mapa_icon.png" alt="Glas Mapa aplikacija">
+    <div class="app-card-content">
+        <h2>Glas Mapa</h2>
+        <p>Upravljajte mapama glasom. Pronađite lokacije i navigaciju putem govora.</p>
+    </div>
+    <a href="/static/apk/glas_mapa.apk" class="install-button" onclick="incrementCounter('glas_mapa')">Instaliraj</a>
+    <div class="counter" id="counter-glas_mapa">Preuzimanja: 0</div>
+</div>
+
+
+
+
 </div>
 
 <script>
@@ -173,7 +206,8 @@
 
     // Funkcija za učitavanje broja preuzimanja
     function updateCounters() {
-        const apps = ['uho']; // Ovde dodaš ID-jeve aplikacija koje imaš
+        const apps = ['uho', 'callyou', 'call_youtube_song', 'glas_mapa'];
+
         apps.forEach(appId => {
             let count = localStorage.getItem('counter-' + appId) || 0;
             document.getElementById('counter-' + appId).innerText = `Preuzimanja: ${count}`;
